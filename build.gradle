@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://repo.spring.io/plugins-release' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE")
+    }
+}
+
+allprojects {
+    group 'com.github.since1986.learn.cloud'
+    version '1.0-SNAPSHOT'
+
+    apply plugin: 'idea'
+}
+
+subprojects {
+    apply plugin: 'application'
+    apply plugin: 'org.springframework.boot'
+
+    idea {
+        module {
+            inheritOutputDirs = false
+            outputDir = file("$buildDir/classes/java/main/")
+        }
+    }
+
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+    }
+
+    //全局依赖
+    dependencies {
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.5.9.RELEASE'
+
+        compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
+    }
+}

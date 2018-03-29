@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: com-github-since1986-learn-cloud-eureka-server #注意命名要符合RFC 2396，否则会影响服务发现 详见https://stackoverflow.com/questions/37062828/spring-cloud-brixton-rc2-eureka-feign-or-rest-template-configuration-not-wor
+
+server:
+  port: 8001
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
